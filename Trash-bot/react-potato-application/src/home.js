@@ -20,10 +20,21 @@ const REACT_APP_API_URL = process.env.REACT_APP_API_URL || "http://localhost:800
 
 const ColorButton = withStyles((theme) => ({
   root: {
-    color: theme.palette.getContrastText(common.white),
-    backgroundColor: common.white,
+    color: "#ffffff",
+    backgroundColor: "rgba(255, 255, 255, 0.2)",
+    backdropFilter: "blur(10px)",
+    border: "2px solid rgba(255, 255, 255, 0.3)",
+    borderRadius: "12px",
+    padding: "14px 32px",
+    fontSize: "16px",
+    fontWeight: 600,
+    textTransform: "none",
+    transition: "all 0.3s cubic-bezier(0.4, 0, 0.2, 1)",
     "&:hover": {
-      backgroundColor: "#ffffff7a",
+      backgroundColor: "rgba(255, 255, 255, 0.3)",
+      borderColor: "rgba(255, 255, 255, 0.5)",
+      transform: "translateY(-2px)",
+      boxShadow: "0 10px 25px rgba(0, 0, 0, 0.2)",
     },
   },
 }))(Button);
@@ -31,61 +42,189 @@ const ColorButton = withStyles((theme) => ({
 const useStyles = makeStyles((theme) => ({
   grow: { flexGrow: 1 },
   clearButton: {
-    width: "-webkit-fill-available",
-    borderRadius: "15px",
-    padding: "15px 22px",
-    color: "#000000a6",
-    fontSize: "20px",
-    fontWeight: 900,
+    width: "100%",
+    borderRadius: "12px",
+    padding: "16px 32px",
+    color: "#ffffff",
+    fontSize: "15px",
+    fontWeight: 600,
+    background: "linear-gradient(135deg, #667eea 0%, #764ba2 100%)",
+    textTransform: "none",
+    transition: "all 0.3s cubic-bezier(0.4, 0, 0.2, 1)",
+    boxShadow: "0 4px 14px rgba(102, 126, 234, 0.35)",
+    "&:hover": {
+      background: "linear-gradient(135deg, #764ba2 0%, #667eea 100%)",
+      boxShadow: "0 6px 20px rgba(102, 126, 234, 0.45)",
+      transform: "translateY(-2px)",
+    },
   },
-  root: { maxWidth: 345, flexGrow: 1 },
-  media: { height: 400 },
+  root: { maxWidth: 700, flexGrow: 1 },
+  media: { 
+    height: 520,
+    objectFit: "cover",
+    width: "100%",
+    display: "block",
+  },
   paper: { padding: theme.spacing(2), margin: "auto", maxWidth: 500 },
-  gridContainer: { justifyContent: "center", padding: "4em 1em 0 1em" },
+  gridContainer: { 
+    justifyContent: "center", 
+    padding: "60px 24px 40px 24px",
+    minHeight: "calc(100vh - 64px)",
+    alignItems: "center",
+    position: "relative",
+    zIndex: 1,
+  },
   mainContainer: {
-    backgroundImage: `url(${image})`,
-    backgroundRepeat: "no-repeat",
-    backgroundPosition: "center",
-    backgroundSize: "cover",
-    height: "93vh",
-    marginTop: "8px",
+    background: "#ffffff",
+    minHeight: "calc(100vh - 64px)",
+    marginTop: "0px",
+    position: "relative",
   },
   imageCard: {
     margin: "auto",
-    maxWidth: 400,
-    height: 500,
-    backgroundColor: "transparent",
-    boxShadow: "0px 9px 70px 0px rgb(0 0 0 / 30%) !important",
-    borderRadius: "15px",
+    maxWidth: 800,
+    width: "100%",
+    backgroundColor: "#ffffff",
+    boxShadow: "0 2px 8px rgba(0, 0, 0, 0.08), 0 8px 24px rgba(0, 0, 0, 0.06) !important",
+    borderRadius: "24px",
+    overflow: "hidden",
+    transition: "all 0.3s cubic-bezier(0.4, 0, 0.2, 1)",
+    position: "relative",
+    border: "1px solid rgba(0, 0, 0, 0.06)",
   },
-  imageCardEmpty: { height: "auto" },
+  imageCardEmpty: { 
+    height: "auto",
+    minHeight: "480px",
+    display: "flex",
+    alignItems: "center",
+    justifyContent: "center",
+    padding: "0",
+  },
   input: { display: "none" },
-  tableContainer: { backgroundColor: "transparent !important", boxShadow: "none !important" },
+  tableContainer: { 
+    backgroundColor: "transparent !important", 
+    boxShadow: "none !important",
+    width: "100%",
+  },
   table: { backgroundColor: "transparent !important" },
   tableHead: { backgroundColor: "transparent !important" },
   tableRow: { backgroundColor: "transparent !important" },
   tableCell: {
-    fontSize: "22px",
+    fontSize: "24px",
     backgroundColor: "transparent !important",
     borderColor: "transparent !important",
-    color: "#000000a6 !important",
-    fontWeight: "bolder",
-    padding: "1px 24px 1px 16px",
+    color: "#ffffff !important",
+    fontWeight: 700,
+    padding: "12px 24px",
+    fontFamily: "'Inter', sans-serif",
   },
   tableCell1: {
-    fontSize: "14px",
+    fontSize: "12px",
     backgroundColor: "transparent !important",
     borderColor: "transparent !important",
-    color: "#000000a6 !important",
-    fontWeight: "bolder",
-    padding: "1px 24px 1px 16px",
+    color: "rgba(255, 255, 255, 0.8) !important",
+    fontWeight: 600,
+    padding: "8px 24px",
+    textTransform: "uppercase",
+    letterSpacing: "1.2px",
+    fontFamily: "'Inter', sans-serif",
   },
   tableBody: { backgroundColor: "transparent !important" },
   text: { color: "white !important", textAlign: "center" },
-  buttonGrid: { maxWidth: "416px", width: "100%" },
-  detail: { backgroundColor: "white", display: "flex", justifyContent: "center", flexDirection: "column", alignItems: "center" },
-  appbar: { background: "#006400", boxShadow: "none", color: "white" },
-  loader: { color: "#be6a77 !important" },
+  buttonGrid: { maxWidth: "800px", width: "100%", marginTop: "24px" },
+  detail: { 
+    background: "#ffffff",
+    display: "flex", 
+    justifyContent: "center", 
+    flexDirection: "column", 
+    alignItems: "center",
+    padding: "40px 32px",
+  },
+  appbar: { 
+    background: "#ffffff !important",
+    boxShadow: "0 1px 3px rgba(0, 0, 0, 0.08) !important",
+    color: "#1a202c",
+    borderBottom: "1px solid rgba(0, 0, 0, 0.06)",
+  },
+  loader: { 
+    color: "#667eea !important",
+    marginBottom: "20px",
+  },
+  title: {
+    fontWeight: 700,
+    fontSize: "18px",
+    letterSpacing: "-0.2px",
+    fontFamily: "'Inter', sans-serif",
+    color: "#0f172a",
+  },
+  processingText: {
+    color: "#64748b",
+    fontWeight: 500,
+    marginTop: "20px",
+    fontSize: "15px",
+    fontFamily: "'Inter', sans-serif",
+  },
+  resultContainer: {
+    width: "100%",
+    background: "linear-gradient(135deg, #667eea 0%, #764ba2 100%)",
+    borderRadius: "16px",
+    padding: "32px 28px",
+    marginBottom: "0px",
+    boxShadow: "0 4px 16px rgba(102, 126, 234, 0.25)",
+  },
+  resultTitle: {
+    color: "#ffffff",
+    fontWeight: 700,
+    marginBottom: "24px",
+    textAlign: "center",
+    fontSize: "16px",
+    letterSpacing: "0.2px",
+    fontFamily: "'Inter', sans-serif",
+  },
+  resultLabel: {
+    color: "rgba(255, 255, 255, 0.8) !important",
+  },
+  resultValue: {
+    color: "#ffffff !important",
+    fontSize: "26px !important",
+  },
+  heroText: {
+    textAlign: "center",
+    marginBottom: "40px",
+    maxWidth: "700px",
+    margin: "0 auto 40px auto",
+  },
+  heroTitle: {
+    fontSize: "48px",
+    fontWeight: 800,
+    color: "#0f172a",
+    lineHeight: "1.2",
+    marginBottom: "20px",
+    fontFamily: "'Inter', sans-serif",
+    letterSpacing: "-1px",
+    [theme.breakpoints.down('sm')]: {
+      fontSize: "36px",
+    },
+  },
+  heroHighlight: {
+    background: "linear-gradient(135deg, #667eea 0%, #764ba2 100%)",
+    WebkitBackgroundClip: "text",
+    WebkitTextFillColor: "transparent",
+    backgroundClip: "text",
+  },
+  heroDescription: {
+    fontSize: "18px",
+    color: "#64748b",
+    lineHeight: "1.6",
+    fontWeight: 400,
+    fontFamily: "'Inter', sans-serif",
+    maxWidth: "600px",
+    margin: "0 auto",
+    [theme.breakpoints.down('sm')]: {
+      fontSize: "16px",
+      padding: "0 16px",
+    },
+  },
 }));
 
 export const ImageUpload = () => {
@@ -160,16 +299,29 @@ export const ImageUpload = () => {
   return (
     <React.Fragment>
       <AppBar position="static" className={classes.appbar}>
-        <Toolbar>
-          <Typography variant="h6" noWrap>
-            Trash Bot Classification
+        <Toolbar style={{ padding: "14px 40px", minHeight: "64px" }}>
+          <Typography variant="h6" noWrap className={classes.title}>
+            🗑️ Trash Classification AI
           </Typography>
           <div className={classes.grow} />
-          <Avatar src={logo}></Avatar>
+          <Avatar src={logo} style={{ border: "2px solid rgba(0, 0, 0, 0.06)", width: "36px", height: "36px" }}></Avatar>
         </Toolbar>
       </AppBar>
       <Container maxWidth={false} className={classes.mainContainer} disableGutters>
         <Grid className={classes.gridContainer} container spacing={2}>
+          {!imageLoaded && !data && !isLoading && (
+            <Grid item xs={12}>
+              <div className={classes.heroText}>
+                <Typography variant="h1" className={classes.heroTitle}>
+                  Classify <span className={classes.heroHighlight}>trash</span> images instantly
+                </Typography>
+                <Typography variant="body1" className={classes.heroDescription}>
+                  Upload images to automatically classify waste into categories: <strong>E-waste</strong>, <strong>Paper</strong>, <strong>Plastic</strong>, and <strong>Food</strong>. 
+                  No technical skills needed—just upload, analyze, and get instant results!
+                </Typography>
+              </div>
+            </Grid>
+          )}
           <Grid item xs={12}>
             <Card className={`${classes.imageCard} ${!imageLoaded ? classes.imageCardEmpty : ""}`}>
               {imageLoaded && preview && (
@@ -184,10 +336,10 @@ export const ImageUpload = () => {
               )}
 
               {!imageLoaded && (
-                <CardContent>
+                <CardContent style={{ padding: "0" }}>
                   <DropzoneArea
                     acceptedFiles={["image/*"]}
-                    dropzoneText="Drag and drop an image of a potato plant leaf to process"
+                    dropzoneText="Drag and drop a trash image here or click to browse"
                     onChange={onSelectFile}
                   />
                 </CardContent>
@@ -195,29 +347,36 @@ export const ImageUpload = () => {
 
               {data && (
                 <CardContent className={classes.detail}>
-                  <TableContainer component={Paper} className={classes.tableContainer}>
-                    <Table size="small" aria-label="simple table" className={classes.table}>
-                      <TableHead className={classes.tableHead}>
-                        <TableRow className={classes.tableRow}>
-                          <TableCell className={classes.tableCell1}>Label:</TableCell>
-                          <TableCell align="right" className={classes.tableCell1}>Confidence:</TableCell>
-                        </TableRow>
-                      </TableHead>
-                      <TableBody className={classes.tableBody}>
-                        <TableRow className={classes.tableRow}>
-                          <TableCell className={classes.tableCell}>{data.class}</TableCell>
-                          <TableCell align="right" className={classes.tableCell}>{confidence}%</TableCell>
-                        </TableRow>
-                      </TableBody>
-                    </Table>
-                  </TableContainer>
+                  <div className={classes.resultContainer}>
+                    <Typography variant="h6" className={classes.resultTitle}>
+                      Classification Result
+                    </Typography>
+                    <TableContainer component={Paper} className={classes.tableContainer}>
+                      <Table size="small" aria-label="simple table" className={classes.table}>
+                        <TableHead className={classes.tableHead}>
+                          <TableRow className={classes.tableRow}>
+                            <TableCell className={`${classes.tableCell1} ${classes.resultLabel}`}>Category</TableCell>
+                            <TableCell align="right" className={`${classes.tableCell1} ${classes.resultLabel}`}>Confidence</TableCell>
+                          </TableRow>
+                        </TableHead>
+                        <TableBody className={classes.tableBody}>
+                          <TableRow className={classes.tableRow}>
+                            <TableCell className={`${classes.tableCell} ${classes.resultValue}`}>{data.class}</TableCell>
+                            <TableCell align="right" className={`${classes.tableCell} ${classes.resultValue}`}>{confidence}%</TableCell>
+                          </TableRow>
+                        </TableBody>
+                      </Table>
+                    </TableContainer>
+                  </div>
                 </CardContent>
               )}
 
               {isLoading && (
                 <CardContent className={classes.detail}>
-                  <CircularProgress color="secondary" className={classes.loader} />
-                  <Typography variant="h6">Processing</Typography>
+                  <CircularProgress color="secondary" className={classes.loader} size={60} thickness={4} />
+                  <Typography variant="h6" className={classes.processingText}>
+                    Analyzing trash image...
+                  </Typography>
                 </CardContent>
               )}
             </Card>

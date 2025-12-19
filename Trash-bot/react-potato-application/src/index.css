@@ -1,10 +1,36 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap');
+
+* {
+	box-sizing: border-box;
+	margin: 0;
+	padding: 0;
+}
+
 body {
 	margin: 0;
-	font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
+	font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
 		'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
 		sans-serif;
 	-webkit-font-smoothing: antialiased;
 	-moz-osx-font-smoothing: grayscale;
+	background: #ffffff;
+	min-height: 100vh;
+	position: relative;
+	overflow-x: hidden;
+}
+
+body::before {
+	content: '';
+	position: fixed;
+	top: 0;
+	left: 0;
+	width: 100%;
+	height: 100%;
+	background: 
+		radial-gradient(circle at 20% 30%, rgba(102, 126, 234, 0.05) 0%, transparent 50%),
+		radial-gradient(circle at 80% 70%, rgba(118, 75, 162, 0.05) 0%, transparent 50%);
+	pointer-events: none;
+	z-index: 0;
 }
 
 code {
@@ -12,9 +38,59 @@ code {
 		monospace;
 }
 
+/* Dropzone Styling */
 .MuiDropzoneArea-root {
-	background-color: transparent !important;
+	background: #f8f9fa !important;
+	border: 2px dashed #e0e0e0 !important;
+	border-radius: 16px !important;
+	padding: 80px 40px !important;
+	transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1) !important;
+	min-height: 400px !important;
+	display: flex !important;
+	flex-direction: column !important;
+	align-items: center !important;
+	justify-content: center !important;
+	box-shadow: none !important;
 }
-.MuiDropzoneArea-text, .MuiDropzoneArea-icon {
-  color: white !important;
+
+.MuiDropzoneArea-root:hover {
+	border-color: #667eea !important;
+	background: #f0f4ff !important;
+	transform: translateY(-2px);
+	box-shadow: 0 4px 12px rgba(102, 126, 234, 0.15) !important;
+}
+
+.MuiDropzoneArea-text {
+	color: #64748b !important;
+	font-size: 15px !important;
+	font-weight: 500 !important;
+	font-family: 'Inter', sans-serif !important;
+	margin-top: 20px !important;
+	text-align: center !important;
+	letter-spacing: -0.1px !important;
+}
+
+.MuiDropzoneArea-icon {
+	color: #667eea !important;
+	font-size: 56px !important;
+	margin-bottom: 12px !important;
+	opacity: 0.8;
+}
+
+/* Custom Scrollbar */
+::-webkit-scrollbar {
+	width: 8px;
+}
+
+::-webkit-scrollbar-track {
+	background: #f8f9fa;
+}
+
+::-webkit-scrollbar-thumb {
+	background: #e0e0e0;
+	border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+	background: #d0d0d0;
 }
