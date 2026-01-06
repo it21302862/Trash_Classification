@@ -71,16 +71,14 @@ from PIL import Image
 import tensorflow as tf
 import os
 
-# Suppress TensorFlow info/warnings
-os.environ['TF_CPP_MIN_LOG_LEVEL'] = '2'
 
 app = FastAPI()
 
-# Allow CORS from frontend
+
 origins = [
     "http://localhost",
     "http://localhost:3000",
-    "https://trash-classification-iota.vercel.app"
+    "https://trash-classification-iota.vercel.app/"  
 ]
 
 app.add_middleware(
@@ -91,22 +89,26 @@ app.add_middleware(
     allow_headers=["*"],
 )
 
-# Model path (relative to this file)
-MODEL_PATH = os.path.join(os.path.dirname(os.path.abspath(__file__)), "trash.keras")
 
-# Load model
-print(f"Loading model from: {MODEL_PATH}")
+BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+MODEL_PATH = os.path.join(BASE_DIR, "saved_models", "1", "trash.keras")
+
 MODEL = tf.keras.models.load_model(MODEL_PATH)
 
+
 CLASS_NAMES = ["e-waste", "food", "paper", "plastic"]
+
 
 @app.get("/ping")
 async def ping():
     return {"message": "Hello, I am alive"}
 
+
 def read_file_as_image(data) -> np.ndarray:
-    image = Image.open(BytesIO(data)).convert("RGB")
+    image = Image.open(BytesIO(data))
+    image = image.convert("RGB")  
     return np.array(image)
+
 
 @app.post("/predict")
 async def predict(file: UploadFile = File(...)):
@@ -114,6 +116,7 @@ async def predict(file: UploadFile = File(...)):
     img_batch = np.expand_dims(image, axis=0)
 
     predictions = MODEL.predict(img_batch)
+
     predicted_class_index = int(np.argmax(predictions[0]))
     predicted_class = CLASS_NAMES[predicted_class_index]
     confidence = float(np.max(predictions[0]))
@@ -123,7 +126,8 @@ async def predict(file: UploadFile = File(...)):
         "confidence": confidence
     }
 
-# Use this for local testing only
 if __name__ == "__main__":
     import uvicorn
-    uvicorn.run(app, host="0.0.0.0", port=8000)
+    uvicorn.run(app, host="127.0.0.1", port=8000)
+
+
